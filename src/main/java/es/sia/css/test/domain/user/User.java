@@ -35,13 +35,14 @@ public final class User {
 
     public void withdrawCash(Cash amount) {
         if (!cash.isGreaterOrEqualsTo(amount)) { throw new NotEnoughCashException(cash); }
-        this.cash = Cash.of(this.cash.value() - amount.value());
     }
 
     public void resolveBet(ResolvedBet result) {
         if(result.getWinningBet()){
-            cash = Cash.of(cash.value() + result.getAmount().value() + result.getAmount().value()/35) ;
-        } 
+            cash = Cash.of(cash.value() + result.getAmount().value());
+        } else {
+        	cash = Cash.of(cash.value() - result.getAmount().value());
+        }
     }
 
     public static final class NotEnoughCashException extends RuntimeException {

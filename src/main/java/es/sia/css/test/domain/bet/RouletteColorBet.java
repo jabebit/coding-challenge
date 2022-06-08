@@ -28,7 +28,7 @@ public class RouletteColorBet extends Bet implements RouletteBet {
     public ResolvedBet resolve(RoulettePosition position) {
         return new ResolvedBet(
             this.getUser(),
-            Cash.of(this.getAmount().value() * 2),
+            Cash.of(this.getAmount().value()),
             this.color == position.getColor()
         );
     }
