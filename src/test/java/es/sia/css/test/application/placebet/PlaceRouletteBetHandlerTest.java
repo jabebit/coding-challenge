@@ -66,12 +66,36 @@ class PlaceRouletteBetHandlerTest {
 
     @Test
     void winningNumericBet() {
-        // TODO
+    	User user = User.of(Cash.of(100L));
+    	
+    	PlaceRouletteBetHandler subject = new PlaceRouletteBetHandler(
+                user,
+                Roulette.of(numberRandomizerMock)
+            );
+    	
+    	when(numberRandomizerMock.getNumber(37)).thenReturn(13);
+    	
+    	PlaceSingleNumberRouletteBetCommand command = new PlaceSingleNumberRouletteBetCommand(1L, 13);
+        subject.handle(command);
+        
+        Assertions.assertEquals(134L, user.getCash().value());
     }
 
     @Test
     void losingNumericBet() {
-        // TODO
+    	User user = User.of(Cash.of(100L));
+
+    	PlaceRouletteBetHandler subject = new PlaceRouletteBetHandler(
+    			user,
+    			Roulette.of(numberRandomizerMock)
+    			);
+
+    	when(numberRandomizerMock.getNumber(37)).thenReturn(9);
+
+    	PlaceSingleNumberRouletteBetCommand command = new PlaceSingleNumberRouletteBetCommand(1L, 13);
+    	subject.handle(command);
+
+    	Assertions.assertEquals(99L, user.getCash().value());
     }
 
 }
