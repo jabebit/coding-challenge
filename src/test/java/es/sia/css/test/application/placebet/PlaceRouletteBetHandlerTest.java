@@ -43,7 +43,7 @@ class PlaceRouletteBetHandlerTest {
 
         when(numberRandomizerMock.getNumber(37)).thenReturn(7);
 
-        PlaceColorRouletteBetCommand command = new PlaceColorRouletteBetCommand(50L, RouletteColor.RED);
+        PlaceColorRouletteBetCommand command = new PlaceColorRouletteBetCommand(150L, RouletteColor.RED);
 
         Assertions.assertThrows(NotEnoughCashException.class, () -> subject.handle(command));
     }

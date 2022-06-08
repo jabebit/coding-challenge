@@ -9,8 +9,8 @@ public abstract class Bet {
     private final User user;
 
     protected Bet(Cash amount, User user) {
-        if (!user.canAffordBet(amount)) { throw new UserCannotAffordBetException(); }
-        user.withdrawCash(amount);
+    	user.withdrawCash(amount);
+    	if (!user.canAffordBet(amount)) { throw new UserCannotAffordBetException(); }
         this.amount = amount;
         this.user = user;
     }
