@@ -5,10 +5,14 @@
 
 package es.sia.css.test.domain.roulette;
 
+import java.util.Optional;
+
 import es.sia.css.test.domain.bet.ResolvedBet;
 import es.sia.css.test.domain.bet.RouletteBet;
+import es.sia.css.test.domain.bet.RouletteNumberBet;
+import es.sia.css.test.domain.user.User;
+import es.sia.css.test.domain.valueobject.Cash;
 import es.sia.css.test.domain.valueobject.RoulettePosition;
-import java.util.Optional;
 
 public final class Roulette {
 
@@ -28,8 +32,12 @@ public final class Roulette {
     }
 
     public Optional<ResolvedBet> play() {
-        RoulettePosition winningPosition = getRandomPosition();
-        return Optional.of(bet.resolve(winningPosition));
+    	RoulettePosition winningPosition = getRandomPosition();
+    	// Add treatment in case that bet==null
+    	if (this.bet == null) {
+    		return Optional.empty();
+    	}
+    	return Optional.of(bet.resolve(winningPosition));
     }
 
     private RoulettePosition getRandomPosition() {
