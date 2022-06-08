@@ -75,10 +75,10 @@ class PlaceRouletteBetHandlerTest {
     	
     	when(numberRandomizerMock.getNumber(37)).thenReturn(13);
     	
-    	PlaceSingleNumberRouletteBetCommand command = new PlaceSingleNumberRouletteBetCommand(1L, 13);
+    	PlaceSingleNumberRouletteBetCommand command = new PlaceSingleNumberRouletteBetCommand(2L, 13);
         subject.handle(command);
         
-        Assertions.assertEquals(134L, user.getCash().value());
+        Assertions.assertEquals(170L, user.getCash().value());
     }
 
     @Test

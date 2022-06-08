@@ -40,7 +40,7 @@ public final class User {
 
     public void resolveBet(ResolvedBet result) {
         if(result.getWinningBet()){
-            cash = Cash.of(cash.value() + result.getAmount().value());
+            cash = Cash.of(cash.value() + result.getAmount().value() + result.getAmount().value()/35) ;
         } 
     }
 
