@@ -41,9 +41,7 @@ public final class User {
     public void resolveBet(ResolvedBet result) {
         if(result.getWinningBet()){
             cash = Cash.of(cash.value() + result.getAmount().value());
-        } else {
-            cash = Cash.of(cash.value() - result.getAmount().value());
-        }
+        } 
     }
 
     public static final class NotEnoughCashException extends RuntimeException {

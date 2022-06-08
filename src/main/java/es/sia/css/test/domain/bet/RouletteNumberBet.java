@@ -23,10 +23,17 @@ public class RouletteNumberBet extends Bet implements RouletteBet {
 
     @Override
     public ResolvedBet resolve(RoulettePosition position) {
+    	final Boolean winningbet = position.getPosition().equals(this.number.getPosition());
+    	Cash cashResolve;
+    	if(winningbet) {
+    		cashResolve = Cash.of(this.getAmount().value() * 35);
+    	} else {
+    		cashResolve = this.getAmount();
+    	}
         return new ResolvedBet(
             this.getUser(),
-            Cash.of(this.getAmount().value() * 35),
-            position.getPosition().equals(this.number.getPosition())
+            cashResolve,
+            winningbet
         );
     }
 }
