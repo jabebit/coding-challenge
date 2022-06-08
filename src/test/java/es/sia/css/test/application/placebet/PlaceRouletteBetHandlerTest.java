@@ -59,9 +59,10 @@ class PlaceRouletteBetHandlerTest {
 
         when(numberRandomizerMock.getNumber(37)).thenReturn(7);
 
-        PlaceColorRouletteBetCommand command = new PlaceColorRouletteBetCommand(50L, RouletteColor.RED);
+        PlaceColorRouletteBetCommand command = new PlaceColorRouletteBetCommand(30L, RouletteColor.RED);
+        subject.handle(command);
 
-        // TODO añadir aserciones
+        Assertions.assertEquals(70L, user.getCash().value());
     }
 
     @Test
